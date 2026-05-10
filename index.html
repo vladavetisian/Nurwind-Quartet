@@ -62,16 +62,21 @@
       padding-top: max(clamp(40px,9vh,110px), env(safe-area-inset-top));
       padding-bottom: max(28px, env(safe-area-inset-bottom));
     }
+
+    /* 🖼️ Perfect image: contained, never cropped, never too big */
     .home-photo {
-      width: 100%;
-      max-width: min(340px, 88%);
-      height: auto;                        /* allow full natural height */
       display: block;
       margin: 0 auto 26px;
+      width: 100%;
+      max-width: min(340px, 88%);
+      max-height: 50vh;
+      height: auto;
+      object-fit: contain;          /* shows the entire image */
       border-radius: 3px;
       box-shadow: 0 16px 48px rgba(30,26,20,0.13), 0 0 0 1px var(--border-md);
-      /* object-fit removed – no more cropping */
+      flex-shrink: 0;
     }
+
     .ornament { display: flex; align-items: center; gap: 12px; justify-content: center; margin-bottom: 14px; }
     .ornament .line { height: 1px; width: 44px; }
     .ornament .line:first-child { background: linear-gradient(to right, transparent, var(--gold-line)); }
@@ -217,7 +222,9 @@
     .section::-webkit-scrollbar-thumb { background: var(--gold-line); border-radius: 4px; }
 
     @media (max-width: 520px) {
-      .home-photo { max-height: none; }  /* override any accidental max-height */
+      .home-photo {
+        max-height: 45vh;
+      }
       .home-name  { letter-spacing: 0.1em; }
       .section-inner { padding: 28px 20px; }
       .cform input, .cform textarea { font-size: 16px; }
@@ -231,6 +238,7 @@
 <body>
   <div class="bg" aria-hidden="true"></div>
 
+  <!-- HOME -->
   <section class="section active" id="home">
     <img class="home-photo" src="https://cdn.corenexis.com/files/c/3986349720.jpg" alt="Nurwind Quartet" loading="lazy" />
     <div class="ornament" aria-hidden="true">
@@ -266,7 +274,7 @@
     <p class="copyright">© 2026 Nurwind Quartet · All Rights Reserved</p>
   </section>
 
-  <!-- Other sections unchanged -->
+  <!-- ABOUT -->
   <section class="section" id="about">
     <div class="section-inner">
       <button class="back-btn" onclick="goHome()">
@@ -280,6 +288,7 @@
     </div>
   </section>
 
+  <!-- AWARDS -->
   <section class="section" id="awards">
     <div class="section-inner">
       <button class="back-btn" onclick="goHome()">
@@ -302,6 +311,7 @@
     </div>
   </section>
 
+  <!-- DUDUK -->
   <section class="section" id="duduk">
     <div class="section-inner">
       <button class="back-btn" onclick="goHome()">
@@ -315,6 +325,7 @@
     </div>
   </section>
 
+  <!-- PORTFOLIO -->
   <section class="section" id="portfolio">
     <div class="section-inner">
       <button class="back-btn" onclick="goHome()">
@@ -336,6 +347,7 @@
     </div>
   </section>
 
+  <!-- LESSONS -->
   <section class="section" id="lessons">
     <div class="section-inner">
       <button class="back-btn" onclick="goHome()">
@@ -349,6 +361,7 @@
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section class="section" id="contact">
     <div class="section-inner">
       <button class="back-btn" onclick="goHome()">
