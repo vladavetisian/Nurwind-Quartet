@@ -63,7 +63,6 @@
       padding-bottom: max(28px, env(safe-area-inset-bottom));
     }
 
-    /* 🖼️ Perfect image: contained, never cropped, never too big */
     .home-photo {
       display: block;
       margin: 0 auto 26px;
@@ -71,7 +70,7 @@
       max-width: min(340px, 88%);
       max-height: 50vh;
       height: auto;
-      object-fit: contain;          /* shows the entire image */
+      object-fit: contain;
       border-radius: 3px;
       box-shadow: 0 16px 48px rgba(30,26,20,0.13), 0 0 0 1px var(--border-md);
       flex-shrink: 0;
@@ -93,10 +92,7 @@
       font-size: clamp(13px, 2.4vw, 17px); letter-spacing: 0.08em;
       color: var(--gold); margin-bottom: 10px;
     }
-    .home-sub {
-      font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase;
-      color: var(--muted); line-height: 2.3; margin-bottom: 32px;
-    }
+    /* .home-sub removed – no longer used */
 
     nav { width: 100%; max-width: 300px; margin-inline: auto; }
     nav ul { list-style: none; margin-bottom: 28px; }
@@ -148,6 +144,9 @@
       border-radius: 3px; border: 1px solid var(--border);
       box-shadow: 0 12px 40px rgba(30,26,20,0.08), 0 1px 0 rgba(255,255,255,0.8) inset;
     }
+    .section-inner.photo-gallery {
+      max-width: 860px;
+    }
     .back-btn {
       display: inline-flex; align-items: center; gap: 8px;
       background: none; border: none; cursor: pointer;
@@ -192,6 +191,32 @@
     .item-list li::before {
       content: ''; flex-shrink: 0; width: 5px; height: 5px;
       border: 1px solid var(--gold); transform: rotate(45deg); margin-top: 7px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 3px;
+      box-shadow: 0 8px 24px rgba(30,26,20,0.08), 0 0 0 1px var(--border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 32px rgba(30,26,20,0.12), 0 0 0 1px var(--border-md);
+    }
+    @media (max-width: 520px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
     }
 
     .cform { display: flex; flex-direction: column; gap: 4px; max-width: 460px; }
@@ -245,8 +270,8 @@
       <span class="line"></span><span class="diamond"></span><span class="line"></span>
     </div>
     <h1 class="home-name">Nurwind Quartet</h1>
-    <p class="home-name-arm">Նուրվինդ Կվարտետ</p>
-    <p class="home-sub">Duduk · Blul · Shvi · Zurna<br />Preserving the voice of Armenia</p>
+    <p class="home-name-arm">Nurwind Quartet, showcasing the Armenian Duduk and other traditional Armenian woodwinds</p>
+    <!-- ❌ Removed the Duduk · Blul line completely -->
     <nav>
       <ul>
         <li><a onclick="goTo('about')">About Us</a></li>
@@ -254,6 +279,7 @@
         <li><a onclick="goTo('duduk')">The Duduk</a></li>
         <li><a onclick="goTo('portfolio')">Portfolio</a></li>
         <li><a onclick="goTo('lessons')">Lessons</a></li>
+        <li><a onclick="goTo('photos')">Photos</a></li>
         <li><a onclick="goTo('contact')">Contact</a></li>
       </ul>
     </nav>
@@ -264,7 +290,7 @@
       <a href="https://youtube.com/" target="_blank" rel="noopener" aria-label="YouTube">
         <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       </a>
-      <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+      <a href="https://www.instagram.com/nurwind_quartet?igsh=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener" aria-label="Instagram">
         <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
       </a>
       <a href="https://soundcloud.com/" target="_blank" rel="noopener" aria-label="SoundCloud">
@@ -358,6 +384,23 @@
       <p>Members of Nurwind Quartet offer private and group instruction in traditional Armenian wind instruments, including the duduk, blul, shvi, and zurna. Lessons are available both in person and online, and are designed for students of all levels — from the curious beginner to the advancing player seeking a deeper connection to the Armenian musical tradition.</p>
       <p>The quartet's members have spent years teaching at leading Armenian state music colleges, bringing a wealth of pedagogical experience alongside their performing careers. Each lesson is approached with meticulous attention — every detail of breath, embouchure, tone, and phrasing is carefully addressed.</p>
       <p>Lessons are conducted in Armenian, Russian, or English. For availability, scheduling, and rates, please reach out via the <a onclick="goTo('contact')">Contact</a> page.</p>
+    </div>
+  </section>
+
+  <!-- PHOTOS -->
+  <section class="section" id="photos">
+    <div class="section-inner photo-gallery">
+      <button class="back-btn" onclick="goHome()">
+        <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>Back
+      </button>
+      <h2>Photos</h2>
+      <p class="sub">A glimpse of the quartet</p>
+      <div class="gallery-grid">
+        <img src="https://cdn.phototourl.com/free/2026-05-10-71748c49-797a-4393-a2d7-3febc109a73a.jpg" alt="Nurwind Quartet photo 1" loading="lazy" />
+        <img src="https://cdn.phototourl.com/free/2026-05-10-732f0897-50f3-4716-bd55-6aa9550001b3.jpg" alt="Nurwind Quartet photo 2" loading="lazy" />
+        <img src="https://cdn.phototourl.com/free/2026-05-10-6ae9e046-375b-4678-b756-0597e438e9cd.jpg" alt="Nurwind Quartet photo 3" loading="lazy" />
+        <img src="https://cdn.phototourl.com/free/2026-05-10-34b75b09-0b05-4ee7-a524-91348ace0d6c.jpg" alt="Nurwind Quartet photo 4" loading="lazy" />
+      </div>
     </div>
   </section>
 
