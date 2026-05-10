@@ -63,11 +63,14 @@
       padding-bottom: max(28px, env(safe-area-inset-bottom));
     }
     .home-photo {
-      width: 100%; max-width: min(340px, 88%); max-height: min(44vh, 380px);
-      object-fit: cover; object-position: center 30%;
-      display: block; margin: 0 auto 26px;
+      width: 100%;
+      max-width: min(340px, 88%);
+      height: auto;                        /* allow full natural height */
+      display: block;
+      margin: 0 auto 26px;
       border-radius: 3px;
       box-shadow: 0 16px 48px rgba(30,26,20,0.13), 0 0 0 1px var(--border-md);
+      /* object-fit removed – no more cropping */
     }
     .ornament { display: flex; align-items: center; gap: 12px; justify-content: center; margin-bottom: 14px; }
     .ornament .line { height: 1px; width: 44px; }
@@ -214,7 +217,7 @@
     .section::-webkit-scrollbar-thumb { background: var(--gold-line); border-radius: 4px; }
 
     @media (max-width: 520px) {
-      .home-photo { max-height: min(34vh, 260px); }
+      .home-photo { max-height: none; }  /* override any accidental max-height */
       .home-name  { letter-spacing: 0.1em; }
       .section-inner { padding: 28px 20px; }
       .cform input, .cform textarea { font-size: 16px; }
@@ -229,7 +232,7 @@
   <div class="bg" aria-hidden="true"></div>
 
   <section class="section active" id="home">
-    <img class="home-photo" src="https://cdn.corenexis.com/files/c/3986349720.jpg" alt="Nurwind Quartet" />
+    <img class="home-photo" src="https://cdn.corenexis.com/files/c/3986349720.jpg" alt="Nurwind Quartet" loading="lazy" />
     <div class="ornament" aria-hidden="true">
       <span class="line"></span><span class="diamond"></span><span class="line"></span>
     </div>
@@ -263,6 +266,7 @@
     <p class="copyright">© 2026 Nurwind Quartet · All Rights Reserved</p>
   </section>
 
+  <!-- Other sections unchanged -->
   <section class="section" id="about">
     <div class="section-inner">
       <button class="back-btn" onclick="goHome()">
