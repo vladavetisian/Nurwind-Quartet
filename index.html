@@ -92,7 +92,6 @@
       font-size: clamp(13px, 2.4vw, 17px); letter-spacing: 0.08em;
       color: var(--gold); margin-bottom: 10px;
     }
-    /* .home-sub removed – no longer used */
 
     nav { width: 100%; max-width: 300px; margin-inline: auto; }
     nav ul { list-style: none; margin-bottom: 28px; }
@@ -133,6 +132,22 @@
       font-size: 9px; letter-spacing: 0.18em; color: rgba(138,118,96,0.5);
       text-transform: uppercase; line-height: 2;
       border-top: 1px solid var(--border); padding-top: 14px; display: inline-block;
+    }
+    /* Credit line style */
+    .credit {
+      font-size: 8px; letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-top: 6px;
+      display: block;
+      text-transform: uppercase;
+    }
+    .credit a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .credit a:hover {
+      color: var(--crimson);
     }
 
     .section-inner {
@@ -271,7 +286,6 @@
     </div>
     <h1 class="home-name">Nurwind Quartet</h1>
     <p class="home-name-arm">Nurwind Quartet, showcasing the Armenian Duduk and other traditional Armenian woodwinds</p>
-    <!-- ❌ Removed the Duduk · Blul line completely -->
     <nav>
       <ul>
         <li><a onclick="goTo('about')">About Us</a></li>
@@ -298,6 +312,10 @@
       </a>
     </div>
     <p class="copyright">© 2026 Nurwind Quartet · All Rights Reserved</p>
+    <!-- ✅ New credit line with link to your website -->
+    <p class="credit">
+      <a href="https://vladavetisian.github.io/Elite_Circle_Club/" target="_blank" rel="noopener">Website By Elite Circle Club</a>
+    </p>
   </section>
 
   <!-- ABOUT -->
